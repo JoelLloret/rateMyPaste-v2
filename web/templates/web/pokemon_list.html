@@ -1,0 +1,13 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+  <h1>My Pokémons</h1>
+  <a href="{% url 'pokemon_create' %}">Create a new Pokemon</a>
+  <ul>
+    {% for pokemon in pokemons %}
+      <li><a href="{% url 'pokemon_detail' pokemon.pk %}">{{ pokemon.nickname }}</a></li>
+    {% empty %}
+      <li>No Pokémons created yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

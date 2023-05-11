@@ -1,0 +1,16 @@
+{% extends 'web/base.html' %}
+fields = ['name', 'pokemon1', 'pokemon2', 'pokemon3', 'pokemon4', 'pokemon5', 'pokemon6', 'pokepaste_code']
+{% block content %}
+  <h1>{{ paste.name }}</h1>
+  <ul>
+    <li>Pokémon 1: {{ paste.pokemon1 }}</li>
+    <li>Pokémon 2: {{ paste.pokemon2 }}</li>
+    <li>Pokémon 3: {{ paste.pokemon3 }}</li>
+    <li>Pokémon 4: {{ paste.pokemon4 }}</li>
+    <li>Pokémon 5: {{ paste.pokemon5 }}</li>
+    <li>Pokémon 6: {{ paste.pokemon6 }}</li>
+    <li>Code: {{ paste.pokepaste_code }}</li>
+    <li><a href="{% url 'paste_edit' paste.pk %}">Edit</a></li>
+    <li><a href="{% url 'paste_delete' paste.pk %}">Delete</a></li>
+  </ul>
+{% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}rateMyPaste{% endblock %}</title>
+</head>
+<body>
+    <nav>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'pokemon_list' %}">My Pokémons</a>
+            <a href="{% url 'paste_list' %}">My PokéPastes</a>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}!</p>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <div class="alert alert-success" role="alert">
+            <h3>Hello!</h3>
+            <a href="{% url 'register' %}">Signup</a>
+            <a href="{% url 'login' %}">Login</a>
+            </div>
+        {% endif %}
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

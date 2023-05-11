@@ -1,33 +1,39 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Type(models.Model):
-    name = models.CharField(max_length=20,primary_key=True)
-    
+    name = models.CharField(max_length=20, primary_key=True)
+
     def __str__(self) -> str:
         return self.name
 
+
 class Item(models.Model):
     name = models.CharField(max_length=200)
-    img_url = models.CharField(max_length=1000,null=True)
-    
+    img_url = models.CharField(max_length=1000, null=True)
+
     def __str__(self) -> str:
         return self.name
+
 
 class Pokemon(models.Model):
     name = models.CharField(max_length=100)
     type1 = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True, related_name="type1")
     type2 = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True, related_name="type2")
-    img_url = models.CharField(max_length=1000,null=True)
+    img_url = models.CharField(max_length=1000, null=True)
+
     def __str__(self) -> str:
         return self.name
-    
+
+
 class Attack(models.Model):
     name = models.CharField(max_length=100)
     type1 = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
 
     def __str__(self) -> str:
         return self.name
+
 
 class someonesPokemon(models.Model):
     nickname = models.CharField(max_length=100)
@@ -39,8 +45,11 @@ class someonesPokemon(models.Model):
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
     tera_type = models.ForeignKey(Type, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
     def __str__(self) -> str:
-        return self.nickname + " ("+self.pokemon.name+")"
+        return self.nickname + " (" + self.pokemon.name + ")"
+
+
 class PokePaste(models.Model):
     name = models.CharField(max_length=150)
     pokemon1 = models.ForeignKey(someonesPokemon, on_delete=models.SET_NULL, null=True, related_name="pokemon1")
@@ -51,5 +60,6 @@ class PokePaste(models.Model):
     pokemon6 = models.ForeignKey(someonesPokemon, on_delete=models.SET_NULL, null=True, related_name="pokemon6")
     pokepaste_code = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
     def __str__(self) -> str:
         return self.name

@@ -1,0 +1,13 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+  <h1>My PokéPastes</h1>
+  <a href="{% url 'paste_create' %}">Create a new Paste</a>
+  <ul>
+    {% for paste in pastes %}
+      <li><a href="{% url 'paste_detail' paste.pk %}">{{ paste.name }}</a></li>
+    {% empty %}
+      <li>No Pastes created yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

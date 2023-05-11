@@ -1,0 +1,17 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+  <h1>{{ pokemon.name }}</h1>
+  <ul>
+    <li>Name: {{ pokemon.nickname }}</li>
+     <li>Pokemon: {{ pokemon.pokemon }}</li>
+    <li>Attack 1: {{ pokemon.attack1 }}</li>
+    <li>Attack 2: {{ pokemon.attack2 }}</li>
+    <li>Attack 3: {{ pokemon.attack3 }}</li>
+    <li>Attack 4: {{ pokemon.attack4 }}</li>
+    <li>Item: {{ pokemon.item }}</li>
+    <li>Tera Type: {{ pokemon.tera_type }}</li>
+    <li><a href="{% url 'pokemon_edit' pokemon.pk %}">Edit</a></li>
+    <li><a href="{% url 'pokemon_delete' pokemon.pk %}">Delete</a></li>
+  </ul>
+{% endblock %}
