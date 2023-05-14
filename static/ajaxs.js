@@ -12,8 +12,8 @@ function pokemonAjax(idInput, hidden_input){
             success: function(data) {
               response($.map(data.results, function(item) {
                 return {
-                  label: item.name,
-                  value: item.id
+                  label: item.id,
+                  value: item.name
                 }
               }));
             },
@@ -22,7 +22,7 @@ function pokemonAjax(idInput, hidden_input){
                     $(event.target).val("");
                 }
                 else{
-                  $('#'+hidden_input) = $(event.target).val();
+                  $('#'+hidden_input) = $(event.target).attr('label');
                 }
             },
             focus: function (event, ui) {
