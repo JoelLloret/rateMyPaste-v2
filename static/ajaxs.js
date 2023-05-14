@@ -1,4 +1,4 @@
-function pokemonAjax(idInput){
+function pokemonAjax(idInput, hidden_input){
 
       $("#"+idInput).autocomplete({
         source: function(request, response) {
@@ -10,9 +10,7 @@ function pokemonAjax(idInput){
               limit: 10,
             },
             success: function(data) {
-              console.log(data);
               response($.map(data.results, function(item) {
-                console.log(item)
                 return {
                   label: item.name,
                   value: item.id
@@ -22,6 +20,9 @@ function pokemonAjax(idInput){
             change: function (event, ui) {
                 if(!ui.item){
                     $(event.target).val("");
+                }
+                else{
+                  $('#'+hidden_input) = $(event.target).val();
                 }
             },
             focus: function (event, ui) {

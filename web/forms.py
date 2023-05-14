@@ -8,7 +8,7 @@ class PokemonForm(forms.ModelForm):
     class Meta:
         model = someonesPokemon
         fields = ['nickname', 'pokemon', 'attack1', 'attack2', 'attack3', 'attack4', 'item', 'tera_type']
-        widgets = {'pokemon': forms.CharField()}
+        widgets = {'pokemon': forms.HiddenInput(attrs={'id':'pokemon'})}
 
 
 class PasteForm(forms.ModelForm):
