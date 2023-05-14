@@ -1,8 +1,12 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import *
 from .models import *
+from django.core.serializers import serialize
+from django.http import HttpResponse
 
 
 def home(request):
@@ -126,3 +130,33 @@ def paste_detail(request, pk):
     if paste.user != request.user:
         return redirect('paste_list')
     return render(request, 'web/paste_detail.html', {'paste': paste})
+
+
+@login_required
+def pokemons(request):
+    if request.method == 'GET':
+        pokemon_filter = request.GET.get('pokemon_filter', '')
+        limit = request.GET.get('limit', '10')
+        pokemons = Pokemon.objects.filter(name__istartswith=pokemon_filter)[:int(limit)]
+        print(pokemons)
+        poke_array = [{'name': p.name, 'img': p.img_url, 'id': p.id} for p in pokemons]
+        response_dict = {
+            'limit': limit,
+            'count': limit,
+            'results': poke_array,
+        }
+        return HttpResponse(json.dumps(response_dict), content_type="application/json")
+    else:
+        render(request, 'web/logout.html')
+
+
+"""@login_required
+def attacks(request, attck):
+    attacks = Attack.objects.filter(name__istartswith=attck)
+    return render(request, 'web/pokemon_list.html', {'pokemons': pokemons})
+
+
+@login_required
+def items(request, item):
+    items = Item.objects.filter(name__istartswith=item)
+    return render(request, 'web/pokemon_list.html', {'pokemons': pokemons})"""
