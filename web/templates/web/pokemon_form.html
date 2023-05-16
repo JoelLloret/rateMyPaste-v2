@@ -4,11 +4,12 @@
   <h1>{{ form_title }}</h1>
   <form method="post">
     {% csrf_token %}
-    <label for="pokemon_id">Pokemon</label><input id="pokemon_id" required>
+    <p><label for="pokemon_searcher">Pokemon Searcher :</label><input id="pokemon_searcher" ></p>
+    <p><label  id="pokemon_label" for="pokemon_img" style=" display: none;" ></label><img id="pokemon_img" src="" style="max-width: 60px; height: auto; display: none;" alt="" /></p>
     {{ form.as_p }}
     <button type="submit">Save</button>
   </form>
   <script>
-    $(pokemonAjax('pokemon_id', 'pokemon'));
+    $(autocompleteAjaxwithImage('pokemon_searcher', 'id_pokemon',"http://127.0.0.1:8000/pokemons/",'pokemon_label','pokemon_img'));
   </script>
 {% endblock %}

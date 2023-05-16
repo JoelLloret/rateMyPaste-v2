@@ -7,10 +7,12 @@ from django.contrib.auth.models import User
 class PokemonForm(forms.ModelForm):
     class Meta:
         model = someonesPokemon
-        fields = ['nickname', 'pokemon', 'attack1', 'attack2', 'attack3', 'attack4', 'item', 'tera_type']
-        widgets = {'pokemon': forms.HiddenInput(attrs={'id':'pokemon'})}
-
-
+        fields = ['pokemon', 'nickname', 'attack1', 'attack2', 'attack3', 'attack4', 'item', 'tera_type']
+        widgets = {'pokemon':  forms.TextInput}
+    def __init__(self,*args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['pokemon'].widget.attrs['readonly']=True
+  
 class PasteForm(forms.ModelForm):
     class Meta:
         model = PokePaste
