@@ -72,6 +72,6 @@ class Command(BaseCommand):
                 modelAttack = Attack(name=name,type1=type1)
                 modelAttack.save()
         
-    def handle(self, *args, **options) :
+    def handle(self, *args, **options):
         self._populateDB()
     
