@@ -10,6 +10,7 @@ function autocompleteAjaxwithImage(searcher, inputId,url, input_label,input_img)
               limit: 10,
             },
             success: function(data) {
+              console.log(data);
               response($.map(data.results, function(item) {
                 return {
                   id : item.id,
@@ -24,7 +25,6 @@ function autocompleteAjaxwithImage(searcher, inputId,url, input_label,input_img)
         },
         minLength: 3,
         select: function(event,ui){
-         
           $("#"+inputId).val(ui.item.id);
           if(input_label) {
             $("#"+input_label).text(ui.item.value);

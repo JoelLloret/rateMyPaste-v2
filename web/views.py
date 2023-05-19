@@ -28,20 +28,23 @@ def register(request):
     return render(request, 'web/register.html', context)
 
 
-@login_required
 def pokemon_list(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     pokemons = someonesPokemon.objects.filter(user=request.user)
     return render(request, 'web/pokemon_list.html', {'pokemons': pokemons})
 
 
-@login_required
 def paste_list(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     pastes = PokePaste.objects.filter(user=request.user)
     return render(request, 'web/paste_list.html', {'pastes': pastes})
 
 
-@login_required
 def pokemon_create(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     if request.method == 'POST':
         form = PokemonForm(request.POST)
         if form.is_valid():
@@ -54,8 +57,9 @@ def pokemon_create(request):
     return render(request, 'web/pokemon_form.html', {'form': form})
 
 
-@login_required
 def paste_create(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     if request.method == 'POST':
         form = PasteForm(request.user, request.POST)
         if form.is_valid():
@@ -68,8 +72,9 @@ def paste_create(request):
     return render(request, 'web/paste_form.html', {'form': form})
 
 
-@login_required
 def pokemon_edit(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('login')
     pokemon = get_object_or_404(someonesPokemon, pk=pk)
     if pokemon.user != request.user:
         return redirect('pokemon_list')
@@ -85,8 +90,9 @@ def pokemon_edit(request, pk):
     return render(request, 'web/pokemon_form.html', {'form': form})
 
 
-@login_required
 def paste_edit(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('login')
     paste = get_object_or_404(PokePaste, pk=pk)
     if paste.user != request.user:
         return redirect('paste_list')
@@ -102,16 +108,18 @@ def paste_edit(request, pk):
     return render(request, 'web/paste_form.html', {'form': form})
 
 
-@login_required
 def pokemon_delete(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('login')
     pokemon = get_object_or_404(someonesPokemon, pk=pk)
     if pokemon.user == request.user:
         pokemon.delete()
     return redirect('pokemon_list')
 
 
-@login_required
 def paste_delete(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('login')
     paste = get_object_or_404(PokePaste, pk=pk)
     if paste.user == request.user:
         paste.delete()
@@ -132,8 +140,9 @@ def paste_detail(request, pk):
     return render(request, 'web/paste_detail.html', {'paste': paste})
 
 
-@login_required
 def pokemons(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     if request.method == 'GET':
         pokemon_filter = request.GET.get('pokemon_filter', '')
         limit = request.GET.get('limit', '10')
