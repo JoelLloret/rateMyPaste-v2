@@ -14,7 +14,7 @@
 </head>
 <style>
     nav#navbar {
-        background-color: #c56363;
+        background-color: #dc3545;;
         
     }
     .navbar-option, .navbar-option:hover{
@@ -36,9 +36,11 @@
     a.navbar-option:hover { text-decoration: none; }
 
     a.navbar-option:active { text-decoration: none; }
+
+   
 </style>
-<body>
-    <nav id="navbar" class="card  align-middle pt-2 pb-2 w-100">
+<body style="background-color:#33475b">
+    <nav id="navbar" class="card shadow-sm align-middle pt-2 pb-2 w-100">
         <div class="row w-100 align-middle justify-content-end p-0">
             {% if user.is_authenticated %}
             <div class="col-1 ms-0   w-auto a align-middle d-flex justify-content-end">

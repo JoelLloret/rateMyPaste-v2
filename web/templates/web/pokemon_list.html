@@ -1,13 +1,17 @@
 {% extends 'web/base.html' %}
 
 {% block content %}
-  <h1>My Pokémons</h1>
-  <a href="{% url 'pokemon_create' %}">Create a new Pokemon</a>
-  <ul>
+<div class="card mt-3 shadow-sm mx-auto"  style="max-width: 500px;" >
+  <div class="container-fluid">
+  <div class="row justify-content-center text-center mt-3 mb-4"><h1>My Pokémons</h1></div>
+  <div class="row justify-content-center"><a class="btn btn-outline-danger "href="{% url 'pokemon_create' %}" style="max-width: 150px;">New</a></div>
+  
     {% for pokemon in pokemons %}
-      <li><a href="{% url 'pokemon_detail' pokemon.pk %}">{{ pokemon.nickname }}</a></li>
+    <div class="row justify-content-center text-center mb-2 mt-1"><a href="{% url 'pokemon_detail' pokemon.pk %}">{{ pokemon.nickname }}</a></div>
     {% empty %}
-      <li>No Pokémons created yet.</li>
+    <div class="row justify-content-center">No Pokémons created yet</div>
     {% endfor %}
-  </ul>
+
+  </div>
+</div>
 {% endblock %}
