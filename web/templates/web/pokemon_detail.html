@@ -13,8 +13,8 @@
     <div class="row justify-content-center text-center mb-2 mt-1">Attack 4: {{ pokemon.attack4 }}</div>
     <div class="row justify-content-center text-center mb-2 mt-1">Item: {{ pokemon.item }}</div>
     <div class="row justify-content-center text-center mb-2 mt-1">Tera Type: {{ pokemon.tera_type }}</div>
-    <div class="row justify-content-center text-center mb-2 mt-1"><a class="col-5 me-2 btn btn-outline-danger" href="{% url 'pokemon_edit' pokemon.pk %}">Edit</a>
-    <a class="col-5 mt-3 mb-3 btn btn-outline-danger" href="{% url 'pokemon_delete' pokemon.pk %}">Delete</a></div>
+    <div class="row mt-3 mb-3 justify-content-center text-center mb-2 mt-1"><a class="col-5 me-2 btn btn-outline-danger" href="{% url 'pokemon_edit' pokemon.pk %}">Edit</a>
+    <a class="col-5  btn btn-outline-danger" href="{% url 'pokemon_delete' pokemon.pk %}">Delete</a></div>
   
   </div>
 </div>
