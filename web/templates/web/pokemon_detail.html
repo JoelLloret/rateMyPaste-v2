@@ -1,21 +1,65 @@
 {% extends 'web/base.html' %}
 
 {% block content %}
-<div class="card mt-3 shadow-sm mx-auto"  style="max-width: 500px;" >
-  <div class="container-fluid">
-  <h1 class="text-center mb-3">{{ pokemon.name }}</h1>
-  
-    <div class="row justify-content-center text-center mb-2 mt-1"> {{ pokemon.nickname }}</div>
-     <div class="row justify-content-center text-center mb-2 mt-1">Pokemon: {{ pokemon.pokemon }}</div>
-    <div class="row justify-content-center text-center mb-2 mt-1">Attack 1: {{ pokemon.attack1 }}</div>
-    <div class="row justify-content-center text-center mb-2 mt-1">Attack 2: {{ pokemon.attack2 }}</div>
-    <div class="row justify-content-center text-center mb-2 mt-1">Attack 3: {{ pokemon.attack3 }}</div>
-    <div class="row justify-content-center text-center mb-2 mt-1">Attack 4: {{ pokemon.attack4 }}</div>
-    <div class="row justify-content-center text-center mb-2 mt-1">Item: {{ pokemon.item }}</div>
-    <div class="row justify-content-center text-center mb-2 mt-1">Tera Type: {{ pokemon.tera_type }}</div>
-    <div class="row mt-3 mb-3 justify-content-center text-center mb-2 mt-1"><a class="col-5 me-2 btn btn-outline-danger" href="{% url 'pokemon_edit' pokemon.pk %}">Edit</a>
-    <a class="col-5  btn btn-outline-danger" href="{% url 'pokemon_delete' pokemon.pk %}">Delete</a></div>
-  
+
+<span vocab="http://schema.org/" typeof="Person">
+
+<div class="card mt-3 shadow-sm mx-auto" style="max-width: 600px;">
+
+  <div class="row  mt-1 ms-1 mt-0">
+    <div class="col-1">
+      <i class="bi  bi-arrow-left-circle-fill text-danger display-6 mx-0 text-start" style="max-width: 120px;"
+        onclick="history.back()"></i>
+    </div>
+    <div class="col-11 justify-content-center" property="givenName">
+      <h1 class="text-center mb-3 pe-5" >{{ pokemon.nickname }}</h1>
+    </div>
+  </div>
+  <div class="card-body container-fluid">
+
+
+    <div class="row justify-content-center text-center mb-2 mt-1">
+      <div class="m-0 p-0 " style="position: relative; max-width: 150px;">
+        <p rel="image" typeof="ImageObject">
+            <img src="{{ pokemon.pokemon.img_url }}" style="max-width: 150px;" alt="" property="URL">
+        </p>
+        <span rel="owns" typeof="Product">
+            <p rel="image" typeof="ImageObject">
+                <img property="URL" src="{{ pokemon.item.img_url }} " alt="{{ pokemon.item }}" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="{{ pokemon.item.name }}" style="width: 50px;  z-index:3; position:absolute;bottom: 0;
+            right: 0;">
+            </p>
+        </span>
+      </div>
+    </div>
+    <div class="row justify-content-center text-center mb-2 mt-1" style="text-transform: capitalize;">
+      <div class="col-6" >
+        <span class="type {{ pokemon.pokemon.type1 }}" ></span>
+        <span class="type {{ pokemon.pokemon.type2 }}" ></span>
+      </div>
+    </div>
+    <div class="row  justify-content-center text-center mb-3 mt-3  " style="text-transform: capitalize;" property="additionalType">
+      {{ pokemon.pokemon.name }}</div>
+    <div rel="knowsAbout" typeof="Thing" class="row px-5 justify-content-center text-center mb-2 mt-1">
+      <div rel="potentialAction" typeof="Action" class="card  m-1 col-5" style="min-height: 40px; background-color:  #d2d6df !important; ;">
+        <div property="name" class="card-body"> {{ pokemon.attack1 }}</div>
+      </div>
+      <div rel="potentialAction" typeof="Action" class="card  m-1 col-5" style="min-height: 40px; background-color:  #d2d6df !important; ">
+        <div property="name" class="card-body"> {{ pokemon.attack2 }}</div>
+      </div>
+      <div rel="potentialAction" typeof="Action" class="card  m-1 col-5 " style="min-height: 40px; background-color:  #d2d6df !important;">
+        <div property="name" class="card-body"> {{ pokemon.attack3 }}</div>
+      </div>
+      <div rel="potentialAction" typeof="Action" class="card  m-1 col-5" style="min-height: 40px; background-color:  #d2d6df !important;">
+        <div property="name" class="card-body"> {{ pokemon.attack4 }}</div>
+      </div>
+    </div>
+    <div class="row justify-content-center text-center mb-2 mt-1"><div class="col-6">Tera Type:  <span class="type {{ pokemon.tera_type }}"></span></div></div>
+    <div class="row mt-3 mb-3 justify-content-center text-center mb-2 mt-1"><a class="col-5 me-2 btn btn-outline-danger"
+        href="{% url 'pokemon_edit' pokemon.pk %}">Edit</a>
+      <a class="col-5  btn btn-outline-danger" href="{% url 'pokemon_delete' pokemon.pk %}">Delete</a>
+    </div>
+
   </div>
 </div>
+</span>
 {% endblock %}

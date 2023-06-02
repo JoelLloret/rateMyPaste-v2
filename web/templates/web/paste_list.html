@@ -1,17 +1,85 @@
 {% extends 'web/base.html' %}
 
 {% block content %}
-<div class="card mt-3 shadow-sm mx-auto"  style="max-width: 500px;" >
+<div class="card mt-3 shadow-sm mx-auto" style="max-width: 1000px;">
   <div class="container-fluid">
-    <div class="row justify-content-center text-center mt-3 mb-4"><h1>My PokéPastes</h1></div>
-    <div class="row justify-content-center mb-3"><a class="btn btn-outline-danger " href="{% url 'paste_create' %}" style="max-width: 150px;">New Paste</a></div>
+    <div class="row justify-content-center text-center mt-3 mb-4">
+      <h1>My PokéPastes</h1>
+    </div>
+    <div class="row justify-content-center mb-3"><a class="btn btn-outline-danger " href="{% url 'paste_create' %}"
+        style="max-width: 150px;">New Paste</a></div>
 
-    
+    <div class="row justify-content-center mb-2 mt-1">
       {% for paste in pastes %}
-      <div class="row justify-content-center text-center mb-2 mt-1"><a href="{% url 'paste_detail' paste.pk %}">{{ paste.name }}</a></div>
-      {% empty %}
-      <div class="row justify-content-center text-center mb-2 mt-1">No Pastes created yet.</div>
+
+
+      <div class="card  container-fluid pokemon-bg shadow-sm"
+        style="max-width: 800px;  ">
+        <a class="no-link h-100 w-100" href="{% url 'paste_detail' paste.pk %}">
+
+          <div class="card-body">
+            <div class="row text-center align-middle mb-1 mt-1">
+              <p class="no-link text-center text-white fw-bold">{{ paste.name}}</p>
+            </div>
+            <div class="row mt-1 px-2 mb-2">
+              <div class="col-2   text-center">
+                <div class="m-0 p-0 " style="position: relative; max-width: 100px;">
+                <img class="img-thumbnail shadow-sm" src="{{paste.pokemon1.pokemon.img_url}}" style="max-width: 100px;"
+                  alt="">
+                <img src="{{ paste.pokemon1.item.img_url }} " alt="{{ pokemon.item }}" style="width: 30px;  z-index:3; position:absolute;bottom: 0;
+                  right: 0;">
+                  </div>
+              </div>
+              <div class="col-2   text-center">
+                <div class="m-0 p-0 " style="position: relative; max-width: 100px;">
+                <img class="img-thumbnail shadow-sm" src="{{paste.pokemon2.pokemon.img_url}}" style="max-width: 100px;"
+                  alt="">
+                <img src="{{ paste.pokemon2.item.img_url }} " alt="{{ pokemon.item }}" style="width: 30px;  z-index:3; position:absolute;bottom: 0;
+                  right: 0;">
+                  </div>
+              </div>
+              <div class="col-2   text-center">
+                <div class="m-0 p-0 " style="position: relative; max-width: 100px;">
+                <img class="img-thumbnail shadow-sm" src="{{paste.pokemon3.pokemon.img_url}}" style="max-width: 100px;"
+                  alt="">
+                <img src="{{ paste.pokemon3.item.img_url }} " alt="{{ pokemon.item }}" style="width: 30px;  z-index:3; position:absolute;bottom: 0;
+                  right: 0;">
+                  </div>
+              </div>
+              <div class="col-2   text-center">
+                <div class="m-0 p-0 " style="position: relative; max-width: 100px;">
+                <img class="img-thumbnail shadow-sm" src="{{paste.pokemon4.pokemon.img_url}}" style="max-width: 100px;"
+                  alt="">
+                <img src="{{ paste.pokemon4.item.img_url }} " alt="{{ pokemon.item }}" style="width: 30px;  z-index:3; position:absolute;bottom: 0;
+                  right: 0;">
+                  </div>
+              </div>
+              <div class="col-2   text-center">
+                <div class="m-0 p-0 " style="position: relative; max-width: 100px;">
+                <img class="img-thumbnail shadow-sm" src="{{paste.pokemon5.pokemon.img_url}}" style="max-width: 100px;"
+                  alt="">
+                <img src="{{ paste.pokemon5.item.img_url }} " alt="{{ pokemon.item }}" style="width: 30px;  z-index:3; position:absolute;bottom: 0;
+                  right: 0;">
+                  </div>
+              </div>
+              <div class="col-2   text-center">
+                <div class="m-0 p-0 " style="position: relative; max-width: 100px;">
+                <img class="img-thumbnail shadow-sm" src="{{paste.pokemon6.pokemon.img_url}}" style="max-width: 100px;"
+                  alt="">
+                <img src="{{ paste.pokemon6.item.img_url }} " alt="{{ pokemon.item }}" style="width: 30px;  z-index:3; position:absolute;bottom: 0;
+                  right: 0;">
+                  </div>
+              </div>
+
+            </div>
+          </div>
+        </a>
+      </div>
+
+
+
       {% endfor %}
-    
-  </div></div>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -1,17 +1,54 @@
 {% extends 'web/base.html' %}
 
 {% block content %}
-<div class="card mt-3 shadow-sm mx-auto"  style="max-width: 500px;" >
+<style>
+  .card-pokemon:hover {
+    background-color: #fae2e2 !important;
+  }
+</style>
+<div class="card mt-3 mb-5 pb-5 shadow-sm mx-auto" style="max-width: calc(80vw);">
   <div class="container-fluid">
-  <div class="row justify-content-center text-center mt-3 mb-4"><h1>My Pokémons</h1></div>
-  <div class="row justify-content-center"><a class="btn btn-outline-danger "href="{% url 'pokemon_create' %}" style="max-width: 150px;">New</a></div>
-  
-    {% for pokemon in pokemons %}
-    <div class="row justify-content-center text-center mb-2 mt-1"><a href="{% url 'pokemon_detail' pokemon.pk %}">{{ pokemon.nickname }}</a></div>
-    {% empty %}
-    <div class="row justify-content-center">No Pokémons created yet</div>
-    {% endfor %}
+    <div class="row justify-content-center text-center mt-3 mb-4">
+      <h1>My Pokémons</h1>
+    </div>
 
+    <div class="row mt-3 justify-content-center" style="max-height: calc(75vh); overflow-y:scroll;">
+      <div class=" mt-1 mb-1  col-4 col-md-3 col-lg-2  mx-1">
+        <div class="card h-100 card-pokemon shadow-sm">
+          <div class="card-body py-5">
+            <a class="no-link h-100  " href="{% url 'pokemon_create' %}">
+              <div class="h-100 w-100" style="text-align: center; display: block;">
+
+                <p class="bi bi-plus-square-dotted display-5  text-center text-danger"
+                  style="vertical-align: middle; display: inline-block ;"></p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      {% for mypokemon in pokemons %}
+
+
+      <div class=" mt-1 mb-1  col-4 col-md-3 col-lg-2  mx-1">
+        <div class="card card-pokemon shadow-sm">
+          <a class="no-link" href="{% url 'pokemon_detail' mypokemon.pk %}">
+            <div class="card-body">
+              <div class="row justify-content-center text-center mb-2 mt-1"><img src="{{mypokemon.pokemon.img_url}}"
+                  style="max-width: 150px;" alt=""></div>
+              <div class="row justify-content-center text-center mb-2 mt-1">
+                <p class="text-danger fw-bold">{{ mypokemon.nickname }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      {% endfor %}
+
+
+    </div>
   </div>
 </div>
 {% endblock %}

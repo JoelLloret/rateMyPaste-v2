@@ -31,7 +31,7 @@ def register(request):
 def pokemon_list(request):
     if not request.user.is_authenticated:
         return redirect('login')
-    pokemons = someonesPokemon.objects.filter(user=request.user)
+    pokemons = someonesPokemon.objects.filter(user=request.user).select_related('pokemon')
     return render(request, 'web/pokemon_list.html', {'pokemons': pokemons})
 
 
